@@ -1,0 +1,14 @@
+node_modules
+.next
+.env
+*.local
+coverage
+.storybook
+.vscode
+*.suo
+*.user
+.vs
+.git
+Dockerfile*
+docker-compose*
+*.md

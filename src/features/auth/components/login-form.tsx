@@ -2,10 +2,10 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Suspense } from "react";
 import { loginInputSchema, LoginInput, useLogin } from "@/lib/auth";
-import { paths } from "@/config/paths";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -17,8 +17,6 @@ export const Login = () => (
 
 const LoginFormInner = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const redirectTo = searchParams?.get("redirectTo");
 
   const {
     register,
@@ -31,7 +29,6 @@ const LoginFormInner = () => {
 
   const login = useLogin({
     onSuccess: () => {
-      router.push(redirectTo || paths.app.root.getHref());
       router.refresh();
     },
   });

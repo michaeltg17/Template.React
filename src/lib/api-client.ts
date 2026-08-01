@@ -22,13 +22,6 @@ function buildUrlWithParams(url: string, params?: Record<string, string | number
 async function fetchApi(url: string, options: RequestOptions = {}): Promise<any> {
   const { method = 'GET', headers = {}, body, cookie, params } = options;
 
-  let cookieHeader = cookie;
-  if (typeof window === 'undefined' && !cookie) {
-    const { cookies } = await import('next/headers');
-    const cookieStore = cookies();
-    cookieHeader = cookieStore.getAll().map((c) => `${c.name}=${c.value}`).join('; ');
-  }
-
   const fullUrl = buildUrlWithParams(`${env.API_URL}${url}`, params);
 
   const response = await fetch(fullUrl, {
@@ -37,7 +30,7 @@ async function fetchApi(url: string, options: RequestOptions = {}): Promise<any>
       'Content-Type': 'application/json',
       Accept: 'application/json',
       ...headers,
-      ...(cookieHeader ? { Cookie: cookieHeader } : {}),
+      ...(cookie ? { Cookie: cookie } : {}),
     },
     body: body ? JSON.stringify(body) : undefined,
     credentials: 'include',

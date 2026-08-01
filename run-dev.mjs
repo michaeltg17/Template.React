@@ -5,16 +5,30 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const logDir = join(__dirname, 'logs');
-const logFile = join(logDir, 'server-dev-log.txt');
+const logFile = join(__dirname, 'dev.txt');
 
-mkdirSync(logDir, { recursive: true });
 writeFileSync(logFile, '');
 const log = createWriteStream(logFile);
 
 function stripAnsi(text) {
   return text.toString().replace(/\x1b\[[0-9;]*m/g, '');
 }
+
+const mockServer = spawn('npx', ['tsx', 'scripts/mock-server.ts'], {
+  stdio: 'pipe',
+  shell: true,
+  env: { ...process.env, FORCE_COLOR: '1' },
+});
+
+mockServer.stdout.on('data', (data) => {
+  process.stdout.write(data);
+  log.write(stripAnsi(data));
+});
+
+mockServer.stderr.on('data', (data) => {
+  process.stderr.write(data);
+  log.write(stripAnsi(data));
+});
 
 const child = spawn('npx', ['next', 'dev'], {
   stdio: 'pipe',
@@ -34,4 +48,4 @@ child.stderr.on('data', (data) => {
 
 child.on('close', (code) => log.end());
 
-process.on('SIGINT', () => child.kill('SIGINT'));
+process.on('SIGINT', () => { mockServer.kill('SIGINT'); child.kill('SIGINT'); });

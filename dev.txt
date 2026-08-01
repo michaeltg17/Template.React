@@ -1,0 +1,8 @@
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+  - Environments: .env
+
+ ✓ Starting...
+Mock DB initialized
+Mock API server started at http://localhost:8090
+ ✓ Ready in 1165ms

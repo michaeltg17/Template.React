@@ -148,3 +148,38 @@ Mock API server started at http://localhost:8090
       }
     }
     responseTime: 1
+ GET / 200 in 70ms
+[19:49:15.403] INFO (31388): request completed
+    req: {
+      "id": 5,
+      "method": "GET",
+      "url": "/api/auth/me",
+      "query": {},
+      "params": {},
+      "headers": {
+        "host": "localhost:8090",
+        "connection": "keep-alive",
+        "content-type": "application/json",
+        "accept": "application/json",
+        "accept-language": "*",
+        "sec-fetch-mode": "cors",
+        "user-agent": "node",
+        "pragma": "no-cache",
+        "cache-control": "no-cache",
+        "accept-encoding": "gzip, deflate"
+      },
+      "remoteAddress": "::1",
+      "remotePort": 60691
+    }
+    res: {
+      "statusCode": 200,
+      "headers": {
+        "x-powered-by": "Express",
+        "access-control-allow-origin": "http://localhost:3000",
+        "vary": "Origin",
+        "access-control-allow-credentials": "true",
+        "content-length": "105",
+        "content-type": "application/json"
+      }
+    }
+    responseTime: 1

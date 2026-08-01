@@ -16,10 +16,13 @@ export const authHandlers = [
     );
   }),
 
-  http.get('/api/auth/me', () => {
+  http.get('/api/auth/me', ({ cookies }) => {
+    if (!cookies.auth_token) {
+      return HttpResponse.json({ message: 'Not authenticated' }, { status: 401 });
+    }
     const user = db.user.findFirst({ where: {} });
     if (!user) {
-      return HttpResponse.json({ message: 'Not authenticated' }, { status: 401 });
+      return HttpResponse.json({ message: 'User not found' }, { status: 404 });
     }
     return HttpResponse.json({ data: user });
   }),

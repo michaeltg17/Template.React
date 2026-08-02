@@ -11,7 +11,7 @@
     "test": "vitest",
     "test-e2e": "pm2 start \"npm run mock-server\" --name server && npx playwright test",
     "mock-server": "tsx ./scripts/mock-server.ts",
-    "prepare": "husky",
+    
     "check-types": "tsc --project tsconfig.json --pretty --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -66,7 +66,7 @@
     "eslint-config-next": "^14.2.5",
     "eslint-config-prettier": "^9.1.0",
     "express": "^4.19.2",
-    "husky": "^9.0.11",
+    
     "jsdom": "^24.0.0",
     "msw": "^2.2.14",
     "pino-http": "^10.1.0",

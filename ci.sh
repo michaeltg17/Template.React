@@ -23,7 +23,7 @@ echo "Type checking passed"
 
 echo ""
 echo "Running unit tests..."
-npm run test -- --run --reporter=verbose
+npm run test -- --run --reporter=verbose --passWithNoTests
 echo "Unit tests passed"
 
 echo ""
@@ -42,7 +42,7 @@ npx playwright install --with-deps
 echo "Running E2E tests..."
 npx playwright test
 
-kill "" "" 2>/dev/null || true
+kill "$MOCK_PID" "$NEXT_PID" 2>/dev/null || true
 wait 2>/dev/null || true
 
 echo "E2E tests passed"

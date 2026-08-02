@@ -5,7 +5,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const logFile = join(__dirname, 'dev.txt');
+const logFile = join(__dirname, 'dev.log');
 
 writeFileSync(logFile, '');
 const log = createWriteStream(logFile);

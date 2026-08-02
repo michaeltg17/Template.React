@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useUser, useLogout } from '@/lib/auth';
 import { LoginDialog } from '@/features/auth/components/login-dialog';
-import { LogOut, User, Shield } from 'lucide-react';
+import { LogOut, User, Shield, Plus } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,9 +13,12 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import type { User as UserType } from '@/types/api';
+import { useCreateProductStore } from '@/stores/create-product';
+import { canCreateProduct } from '@/lib/authorization';
 
 const UserMenu = ({ user }: { user: UserType }) => {
   const logout = useLogout({});
+  const { open: openCreateProduct } = useCreateProductStore();
 
   return (
     <DropdownMenu>
@@ -30,6 +33,12 @@ const UserMenu = ({ user }: { user: UserType }) => {
           <div className="text-xs text-muted-foreground">{user.email}</div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
+        {canCreateProduct(user) && (
+          <DropdownMenuItem onClick={() => openCreateProduct()}>
+            <Plus className="mr-2 h-4 w-4" />
+            Add Product
+          </DropdownMenuItem>
+        )}
         <DropdownMenuItem
           onClick={() => logout.mutate()}
           className="text-destructive"

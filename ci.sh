@@ -37,7 +37,7 @@ sleep 5
 echo "Servers started"
 
 echo "Installing Playwright browsers..."
-npx playwright install chromium
+npx playwright install --with-deps chromium
 
 echo "Running E2E tests..."
 npx playwright test

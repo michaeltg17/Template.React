@@ -1,6 +1,8 @@
 FROM node:20-alpine
 WORKDIR /app
-RUN apk add --no-cache git bash
+RUN apk add --no-cache git bash \
+    nss freetype fontconfig ca-certificates ttf-freefont \
+    libstdc++ libxcb
 COPY . .
 ENTRYPOINT ["bash"]
 CMD ["ci.sh"]

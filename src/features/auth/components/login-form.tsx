@@ -66,6 +66,7 @@ const LoginFormInner = () => {
       <Button type="submit" className="w-full" disabled={login.isPending}>
         {login.isPending ? "Logging in..." : "Login"}
       </Button>
+      {login.error && <p className="text-sm text-red-500">{login.error.message}</p>}
     </form>
   );
 };

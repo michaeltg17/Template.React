@@ -1,5 +1,5 @@
 import { cn } from '@/utils/cn';
-import create from 'zustand';
+import { create } from 'zustand';
 
 type NotificationType = 'success' | 'error' | 'info';
 

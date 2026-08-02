@@ -4,12 +4,16 @@ import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from 
 import { Button } from '@/components/ui/button';
 import { Login } from './login-form';
 import { Suspense } from 'react';
+import { UserIcon } from 'lucide-react';
 
 export const LoginDialog = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Login</Button>
+        <Button variant="outline" size="sm" className="gap-2">
+          <UserIcon className="h-4 w-4" />
+          Login
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

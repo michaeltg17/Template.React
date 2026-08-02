@@ -1,12 +1,11 @@
 import * as z from 'zod';
-import 'dotenv/config';
 
 const createEnv = () => {
   const EnvSchema = z.object({
-    API_URL: z.string(),
+    API_URL: z.string().default('http://localhost:8090/api'),
     ENABLE_API_MOCKING: z.string().refine((s) => s === 'true' || s === 'false').transform((s) => s === 'true').optional(),
     APP_URL: z.string().optional().default('http://localhost:3000'),
-    APP_MOCK_API_PORT: z.string().optional().default('8080'),
+    APP_MOCK_API_PORT: z.string().optional().default('8090'),
   });
 
   const envVars = {

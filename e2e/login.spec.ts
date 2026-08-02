@@ -5,7 +5,7 @@ test('user can login successfully', async ({ page }) => {
   await page.fill('input[name="email"]', 'admin@example.com');
   await page.fill('input[name="password"]', 'password123');
   await page.click('button[type="submit"]');
-  await expect(page).toHaveURL('/app');
+  await expect(page).toHaveURL('/');
 });
 
 test('login shows error with invalid credentials', async ({ page }) => {

@@ -15,7 +15,11 @@ export const metadata = {
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(getUserQueryOptions());
+  try {
+    await queryClient.prefetchQuery(getUserQueryOptions());
+  } catch {
+    /* Ignore SSR prefetch failures - client-side will retry */
+  }
   const dehydratedState = dehydrate(queryClient);
 
   return (

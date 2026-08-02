@@ -29,7 +29,7 @@ const LoginFormInner = () => {
 
   const login = useLogin({
     onSuccess: () => {
-      router.refresh();
+      router.push('/');
     },
   });
 

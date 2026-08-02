@@ -29,9 +29,12 @@ export const UpdateProduct = ({ product, onClose }: { product: Product; onClose:
   const update = useUpdateProduct();
 
   const onSubmit = (data: UpdateProductInput) => {
-    update.mutate({ id: product.id, data }, {
-      onSuccess: () => onClose(),
-    });
+    update.mutate(
+      { id: product.id, data },
+      {
+        onSuccess: () => onClose(),
+      },
+    );
   };
 
   return (
@@ -64,7 +67,9 @@ export const UpdateProduct = ({ product, onClose }: { product: Product; onClose:
         {errors.imageUrl && <FormMessage>{String(errors.imageUrl.message)}</FormMessage>}
       </FormItem>
       <div className="flex gap-2 justify-end">
-        <Button type="button" variant="outline" onClick={onClose}>Cancel</Button>
+        <Button type="button" variant="outline" onClick={onClose}>
+          Cancel
+        </Button>
         <Button type="submit" disabled={update.isPending}>
           {update.isPending ? 'Updating...' : 'Update'}
         </Button>

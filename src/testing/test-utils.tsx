@@ -10,9 +10,7 @@ const createQueryClient = () =>
 
 const Provider = ({ children }: { children: ReactNode }) => {
   const queryClient = createQueryClient();
-  return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  );
+  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
 };
 
 const customRender = (ui: ReactNode, options?: RenderOptions) =>

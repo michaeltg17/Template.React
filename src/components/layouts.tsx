@@ -7,9 +7,7 @@ export const AppLayout = ({ children, className }: { children: ReactNode; classN
   return (
     <div className={cn('min-h-screen bg-gray-50', className)}>
       <Header />
-      <main className="mx-auto max-w-7xl px-4 py-8">
-        {children}
-      </main>
+      <main className="mx-auto max-w-7xl px-4 py-8">{children}</main>
     </div>
   );
 };

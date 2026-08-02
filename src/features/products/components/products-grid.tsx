@@ -21,15 +21,37 @@ export const ProductsGrid = () => {
 
   const products = data?.data;
 
-  if (isLoading) return <div className="flex justify-center py-20"><Spinner size="lg" /></div>;
+  if (isLoading)
+    return (
+      <div className="flex justify-center py-20">
+        <Spinner size="lg" />
+      </div>
+    );
   if (error) return <div className="text-center text-red-600 py-10">Error loading products</div>;
-  if (!products?.length) return <div className="text-center text-gray-500 py-10">No products found. {canCreateProduct(user) && <span>Click {'"'}Add Product{'"'} to create one.</span>}</div>;
+  if (!products?.length)
+    return (
+      <div className="text-center text-gray-500 py-10">
+        No products found.{' '}
+        {canCreateProduct(user) && (
+          <span>
+            Click {'"'}Add Product{'"'} to create one.
+          </span>
+        )}
+      </div>
+    );
 
   return (
     <div>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {products.map((product: Product) => (
-          <ProductCard key={product.id} product={product} onClick={(p) => { setSelectedProduct(p); setIsDetailOpen(true); }} />
+          <ProductCard
+            key={product.id}
+            product={product}
+            onClick={(p) => {
+              setSelectedProduct(p);
+              setIsDetailOpen(true);
+            }}
+          />
         ))}
       </div>
 

@@ -8,7 +8,10 @@ export const FormItem = ({ children, className }: PropsWithChildren<{ className?
   <div className={cn('space-y-2', className)}>{children}</div>
 );
 
-export const FormLabel = ({ className, ...props }: { className?: string } & ComponentPropsWithoutRef<'label'>) => (
+export const FormLabel = ({
+  className,
+  ...props
+}: { className?: string } & ComponentPropsWithoutRef<'label'>) => (
   <Label className={cn('', className)} {...props} />
 );
 

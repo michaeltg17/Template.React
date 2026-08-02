@@ -48,4 +48,7 @@ child.stderr.on('data', (data) => {
 
 child.on('close', (code) => log.end());
 
-process.on('SIGINT', () => { mockServer.kill('SIGINT'); child.kill('SIGINT'); });
+process.on('SIGINT', () => {
+  mockServer.kill('SIGINT');
+  child.kill('SIGINT');
+});

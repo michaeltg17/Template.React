@@ -22,6 +22,11 @@ npm run lint
 echo "Lint passed"
 
 echo ""
+echo "Checking code formatting..."
+npm run format:check
+echo "Formatting passed"
+
+echo ""
 echo "Running TypeScript type checking..."
 npm run check-types
 echo "Type checking passed"

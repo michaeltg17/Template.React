@@ -47,7 +47,7 @@ export const Notifications = () => {
           key={notification.id}
           className={cn(
             'w-80 rounded-lg p-4 shadow-lg cursor-pointer',
-            notificationByType[notification.type]
+            notificationByType[notification.type],
           )}
           onClick={() => removeNotification(notification.id)}
         >

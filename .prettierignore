@@ -3,3 +3,4 @@ node_modules
 coverage
 .storybook
 public/worker.js
+public/mockServiceWorker.js

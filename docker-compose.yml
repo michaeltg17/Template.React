@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile.ci
     container_name: mock-server
     ports:
-      - "8090:8080"
+      - '8090:8080'
     environment:
       - NEXT_PUBLIC_URL=http://localhost:3000
       - NEXT_PUBLIC_MOCK_API_PORT=8090
@@ -21,7 +21,7 @@ services:
       dockerfile: Dockerfile.ci
     container_name: app
     ports:
-      - "3000:3000"
+      - '3000:3000'
     environment:
       - NEXT_PUBLIC_URL=http://localhost:3000
       - NEXT_PUBLIC_API_URL=http://localhost:8090/api

@@ -8,15 +8,22 @@ import type { MutationConfig } from '@/lib/react-query';
 
 export type UpdateProductInput = z.infer<typeof createProductInputSchema>;
 
-export const updateProduct = ({ id, data }: { id: string; data: UpdateProductInput }): Promise<Product> =>
-  api.put(`/products/${id}`, data, undefined);
+export const updateProduct = ({
+  id,
+  data,
+}: {
+  id: string;
+  data: UpdateProductInput;
+}): Promise<Product> => api.put(`/products/${id}`, data, undefined);
 
-export const useUpdateProduct = ({ mutationConfig }: { mutationConfig?: MutationConfig<typeof updateProduct> } = {}) => {
+export const useUpdateProduct = ({
+  mutationConfig,
+}: { mutationConfig?: MutationConfig<typeof updateProduct> } = {}) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: updateProduct,
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: getProductsQueryOptions().queryKey }),
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: getProductsQueryOptions().queryKey }),
     ...mutationConfig,
   });
 };
-

@@ -29,7 +29,9 @@ const UserMenu = ({ user }: { user: UserType }) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>
-          <div className="text-sm font-medium">{user.firstName} {user.lastName}</div>
+          <div className="text-sm font-medium">
+            {user.firstName} {user.lastName}
+          </div>
           <div className="text-xs text-muted-foreground">{user.email}</div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
@@ -39,10 +41,7 @@ const UserMenu = ({ user }: { user: UserType }) => {
             Add Product
           </DropdownMenuItem>
         )}
-        <DropdownMenuItem
-          onClick={() => logout.mutate()}
-          className="text-destructive"
-        >
+        <DropdownMenuItem onClick={() => logout.mutate()} className="text-destructive">
           <LogOut className="mr-2 h-4 w-4" />
           Logout
         </DropdownMenuItem>

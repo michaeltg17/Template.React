@@ -18,7 +18,9 @@ export type CreateProductInput = z.infer<typeof createProductInputSchema>;
 export const createProduct = async (data: CreateProductInput): Promise<Product> =>
   api.post('/products', data, undefined);
 
-export const useCreateProduct = ({ mutationConfig }: { mutationConfig?: MutationConfig<typeof createProduct> } = {}) => {
+export const useCreateProduct = ({
+  mutationConfig,
+}: { mutationConfig?: MutationConfig<typeof createProduct> } = {}) => {
   const queryClient = useQueryClient();
   const { onSuccess, ...restConfig } = mutationConfig || {};
 
@@ -31,4 +33,3 @@ export const useCreateProduct = ({ mutationConfig }: { mutationConfig?: Mutation
     ...restConfig,
   });
 };
-

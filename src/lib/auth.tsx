@@ -53,5 +53,3 @@ export type LoginInput = z.infer<typeof loginInputSchema>;
 
 const loginWithEmailAndPassword = (data: LoginInput): Promise<AuthResponse> =>
   api.post('/auth/login', data, undefined);
-
-

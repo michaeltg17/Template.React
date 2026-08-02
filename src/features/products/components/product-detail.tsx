@@ -8,7 +8,15 @@ import { formatDate } from '@/utils/format';
 import { useUser } from '@/lib/auth';
 import { canUpdateProduct, canDeleteProduct } from '@/lib/authorization';
 
-export const ProductDetail = ({ isOpen, onClose, product }: { isOpen: boolean; onClose: () => void; product: Product | null }) => {
+export const ProductDetail = ({
+  isOpen,
+  onClose,
+  product,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  product: Product | null;
+}) => {
   const { data: user } = useUser();
 
   if (!product) return null;
@@ -22,9 +30,15 @@ export const ProductDetail = ({ isOpen, onClose, product }: { isOpen: boolean; o
         <div className="space-y-4">
           <div className="overflow-hidden rounded-lg bg-gray-100">
             {product.imageUrl ? (
-              <img src={product.imageUrl} alt={product.title} className="h-64 w-full object-cover" />
+              <img
+                src={product.imageUrl}
+                alt={product.title}
+                className="h-64 w-full object-cover"
+              />
             ) : (
-              <div className="flex h-64 items-center justify-center text-6xl text-gray-300">{product.title[0]}</div>
+              <div className="flex h-64 items-center justify-center text-6xl text-gray-300">
+                {product.title[0]}
+              </div>
             )}
           </div>
           <div className="space-y-2">
@@ -36,9 +50,11 @@ export const ProductDetail = ({ isOpen, onClose, product }: { isOpen: boolean; o
             <h4 className="font-semibold text-gray-900">Description</h4>
             <p className="mt-1 text-sm text-gray-600">{product.description}</p>
           </div>
-<div className="flex justify-end gap-2 pt-4 border-t">
+          <div className="flex justify-end gap-2 pt-4 border-t">
             {canUpdateProduct(user) && <UpdateProduct product={product} onClose={onClose} />}
-            {canDeleteProduct(user) && <DeleteProductDialog productId={product.id} onClose={onClose} />}
+            {canDeleteProduct(user) && (
+              <DeleteProductDialog productId={product.id} onClose={onClose} />
+            )}
           </div>
         </div>
       </DialogContent>

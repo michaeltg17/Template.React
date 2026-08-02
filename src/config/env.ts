@@ -3,7 +3,11 @@ import * as z from 'zod';
 const createEnv = () => {
   const EnvSchema = z.object({
     API_URL: z.string().default('http://localhost:8090/api'),
-    ENABLE_API_MOCKING: z.string().refine((s) => s === 'true' || s === 'false').transform((s) => s === 'true').optional(),
+    ENABLE_API_MOCKING: z
+      .string()
+      .refine((s) => s === 'true' || s === 'false')
+      .transform((s) => s === 'true')
+      .optional(),
     APP_URL: z.string().optional().default('http://localhost:3000'),
     APP_MOCK_API_PORT: z.string().optional().default('8090'),
   });
@@ -19,7 +23,11 @@ const createEnv = () => {
 
   if (!parsedEnv.success) {
     throw new Error(
-      `Invalid env provided.\nThe following variables are missing or invalid:\n${Object.entries(parsedEnv.error.flatten().fieldErrors).map(([k, v]) => `- ${k}: ${v}`).join('\n')}`
+      `Invalid env provided.\nThe following variables are missing or invalid:\n${Object.entries(
+        parsedEnv.error.flatten().fieldErrors,
+      )
+        .map(([k, v]) => `- ${k}: ${v}`)
+        .join('\n')}`,
     );
   }
 

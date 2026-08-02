@@ -2,7 +2,13 @@
 
 import type { Product } from '@/types/api';
 
-export const ProductCard = ({ product, onClick }: { product: Product; onClick: (product: Product) => void }) => {
+export const ProductCard = ({
+  product,
+  onClick,
+}: {
+  product: Product;
+  onClick: (product: Product) => void;
+}) => {
   return (
     <div
       className="group relative overflow-hidden rounded-lg bg-white shadow-sm transition-shadow hover:shadow-md cursor-pointer"

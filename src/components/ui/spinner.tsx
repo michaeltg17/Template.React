@@ -13,7 +13,7 @@ export const Spinner = ({ size = 'md' }: { size: 'sm' | 'md' | 'lg' | 'xl' | '2x
     <div
       className={cn(
         spinnerVariants[size],
-        'animate-spin rounded-full border-2 border-gray-300 border-t-gray-600'
+        'animate-spin rounded-full border-2 border-gray-300 border-t-gray-600',
       )}
     />
   );

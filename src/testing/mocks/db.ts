@@ -44,7 +44,8 @@ export const initializeDb = async () => {
     {
       id: 'product-1',
       title: 'Wireless Headphones',
-      description: 'Premium noise-cancelling headphones with 30-hour battery life and crystal-clear audio quality.',
+      description:
+        'Premium noise-cancelling headphones with 30-hour battery life and crystal-clear audio quality.',
       price: 149.99,
       imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop',
       category: 'Electronics',
@@ -52,7 +53,8 @@ export const initializeDb = async () => {
     {
       id: 'product-2',
       title: 'Leather Wallet',
-      description: 'Handcrafted genuine leather bifold wallet with RFID blocking and multiple card slots.',
+      description:
+        'Handcrafted genuine leather bifold wallet with RFID blocking and multiple card slots.',
       price: 59.99,
       imageUrl: 'https://images.unsplash.com/photo-1627123424574-724758594e93?w=400&h=400&fit=crop',
       category: 'Accessories',
@@ -60,7 +62,8 @@ export const initializeDb = async () => {
     {
       id: 'product-3',
       title: 'Smart Watch',
-      description: 'Feature-packed smartwatch with health monitoring, GPS tracking, and water resistance.',
+      description:
+        'Feature-packed smartwatch with health monitoring, GPS tracking, and water resistance.',
       price: 299.99,
       imageUrl: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
       category: 'Electronics',
@@ -68,7 +71,8 @@ export const initializeDb = async () => {
     {
       id: 'product-4',
       title: 'Running Shoes',
-      description: 'Lightweight performance running shoes with responsive cushioning and breathable mesh upper.',
+      description:
+        'Lightweight performance running shoes with responsive cushioning and breathable mesh upper.',
       price: 129.99,
       imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop',
       category: 'Footwear',
@@ -76,7 +80,8 @@ export const initializeDb = async () => {
     {
       id: 'product-5',
       title: 'Coffee Mug',
-      description: 'Artisan handcrafted ceramic mug, perfect for morning coffee. Microwave and dishwasher safe.',
+      description:
+        'Artisan handcrafted ceramic mug, perfect for morning coffee. Microwave and dishwasher safe.',
       price: 24.99,
       imageUrl: 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&h=400&fit=crop',
       category: 'Home & Kitchen',

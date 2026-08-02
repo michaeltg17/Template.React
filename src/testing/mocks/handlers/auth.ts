@@ -5,14 +5,14 @@ export const authHandlers = [
   http.post('/api/auth/login', async ({ request }) => {
     const body = (await request.json()) as { email: string; password: string };
     const user = db.user.findFirst({ where: { email: { equals: body.email } } });
-    
+
     if (!user || body.password !== 'password123') {
       return HttpResponse.json({ message: 'Invalid credentials' }, { status: 401 });
     }
 
     return HttpResponse.json(
       { user, jwt: 'fake-jwt' },
-      { headers: { 'Set-Cookie': 'auth_token=fake-jwt; HttpOnly; Path=/' } }
+      { headers: { 'Set-Cookie': 'auth_token=fake-jwt; HttpOnly; Path=/' } },
     );
   }),
 

@@ -1,13 +1,13 @@
-﻿"use client";
+﻿'use client';
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { Suspense } from "react";
-import { loginInputSchema, LoginInput, useLogin } from "@/lib/auth";
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
+import { Suspense } from 'react';
+import { loginInputSchema, LoginInput, useLogin } from '@/lib/auth';
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 export const Login = () => (
   <Suspense fallback={<div className="text-center py-4">...</div>}>
@@ -24,7 +24,7 @@ const LoginFormInner = () => {
     formState: { errors },
   } = useForm<LoginInput>({
     resolver: zodResolver(loginInputSchema),
-    defaultValues: { email: "", password: "" },
+    defaultValues: { email: '', password: '' },
   });
 
   const login = useLogin({
@@ -42,7 +42,7 @@ const LoginFormInner = () => {
         <Input
           id="email"
           type="email"
-          {...register("email")}
+          {...register('email')}
           placeholder="admin@example.com"
           className="mt-1 block w-full"
         />
@@ -56,7 +56,7 @@ const LoginFormInner = () => {
         <Input
           id="password"
           type="password"
-          {...register("password")}
+          {...register('password')}
           placeholder="password123"
           className="mt-1 block w-full"
         />
@@ -64,7 +64,7 @@ const LoginFormInner = () => {
       </div>
 
       <Button type="submit" className="w-full" disabled={login.isPending}>
-        {login.isPending ? "Logging in..." : "Login"}
+        {login.isPending ? 'Logging in...' : 'Login'}
       </Button>
       {login.error && <p className="text-sm text-red-500">{login.error.message}</p>}
     </form>

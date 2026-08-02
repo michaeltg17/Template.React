@@ -12,7 +12,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     () =>
       new QueryClient({
         defaultOptions: queryConfig,
-      })
+      }),
   );
 
   return (
@@ -24,5 +24,3 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     </ErrorBoundary>
   );
 };
-
-

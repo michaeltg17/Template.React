@@ -2,7 +2,11 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { createProductInputSchema, type CreateProductInput, useCreateProduct } from '../api/create-product';
+import {
+  createProductInputSchema,
+  type CreateProductInput,
+  useCreateProduct,
+} from '../api/create-product';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -61,7 +65,9 @@ export const CreateProduct = ({ onClose }: { onClose: () => void }) => {
         {errors.imageUrl && <FormMessage>{errors.imageUrl.message}</FormMessage>}
       </FormItem>
       <div className="flex gap-2 justify-end">
-        <Button type="button" variant="outline" onClick={onClose}>Cancel</Button>
+        <Button type="button" variant="outline" onClick={onClose}>
+          Cancel
+        </Button>
         <Button type="submit" disabled={create.isPending}>
           {create.isPending ? 'Creating...' : 'Create'}
         </Button>

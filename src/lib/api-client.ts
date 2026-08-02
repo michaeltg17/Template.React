@@ -9,10 +9,13 @@ type RequestOptions = {
   params?: Record<string, string | number | boolean | undefined | null>;
 };
 
-function buildUrlWithParams(url: string, params?: Record<string, string | number | boolean | undefined | null>): string {
+function buildUrlWithParams(
+  url: string,
+  params?: Record<string, string | number | boolean | undefined | null>,
+): string {
   if (!params) return url;
   const filteredParams = Object.fromEntries(
-    Object.entries(params).filter(([, value]) => value != null)
+    Object.entries(params).filter(([, value]) => value != null),
   ) as Record<string, string>;
   if (Object.keys(filteredParams).length === 0) return url;
   const queryString = new URLSearchParams(filteredParams).toString();
@@ -56,7 +59,10 @@ async function fetchApi(url: string, options: RequestOptions = {}): Promise<any>
 
 export const api = {
   get: (url: string, options?: RequestOptions) => fetchApi(url, { ...options, method: 'GET' }),
-  post: (url: string, body?: unknown, options?: RequestOptions) => fetchApi(url, { ...options, method: 'POST', body }),
-  put: (url: string, body?: unknown, options?: RequestOptions) => fetchApi(url, { ...options, method: 'PUT', body }),
-  delete: (url: string, options?: RequestOptions) => fetchApi(url, { ...options, method: 'DELETE' }),
+  post: (url: string, body?: unknown, options?: RequestOptions) =>
+    fetchApi(url, { ...options, method: 'POST', body }),
+  put: (url: string, body?: unknown, options?: RequestOptions) =>
+    fetchApi(url, { ...options, method: 'PUT', body }),
+  delete: (url: string, options?: RequestOptions) =>
+    fetchApi(url, { ...options, method: 'DELETE' }),
 };

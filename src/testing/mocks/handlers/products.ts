@@ -4,7 +4,10 @@ import { db } from '../db';
 export const productHandlers = [
   http.get('/api/products', () => {
     const products = db.product.findMany({});
-    return HttpResponse.json({ data: products, meta: { page: 1, total: products.length, totalPages: 1 } });
+    return HttpResponse.json({
+      data: products,
+      meta: { page: 1, total: products.length, totalPages: 1 },
+    });
   }),
 
   http.post('/api/products', async ({ request }) => {
@@ -15,7 +18,10 @@ export const productHandlers = [
 
   http.put('/api/products/:id', async ({ params, request }) => {
     const data = await request.json();
-    const product = db.product.update({ where: { id: { equals: String(params.id) } }, data: data as any });
+    const product = db.product.update({
+      where: { id: { equals: String(params.id) } },
+      data: data as any,
+    });
     return HttpResponse.json(product);
   }),
 

@@ -11,12 +11,19 @@ dotenv.config();
 const app = express();
 app.use(cors({ origin: process.env.NEXT_PUBLIC_URL, credentials: true }));
 app.use(express.json());
-app.use(logger({ level: 'info', transport: { target: 'pino-pretty', options: { colorize: true, translateTime: true } } }));
+app.use(
+  logger({
+    level: 'info',
+    transport: { target: 'pino-pretty', options: { colorize: true, translateTime: true } },
+  }),
+);
 app.use(createMiddleware(...handlers));
 
 initializeDb().then(() => {
   console.log('Mock DB initialized');
   app.listen(process.env.NEXT_PUBLIC_MOCK_API_PORT, () => {
-    console.log(`Mock API server started at http://localhost:${process.env.NEXT_PUBLIC_MOCK_API_PORT}`);
+    console.log(
+      `Mock API server started at http://localhost:${process.env.NEXT_PUBLIC_MOCK_API_PORT}`,
+    );
   });
 });

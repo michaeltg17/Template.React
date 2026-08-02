@@ -1,4 +1,11 @@
-import { randEmail, randFirstName, randLastName, randNumber, randWord, randUrl } from '@ngneat/falso';
+import {
+  randEmail,
+  randFirstName,
+  randLastName,
+  randNumber,
+  randWord,
+  randUrl,
+} from '@ngneat/falso';
 import { db } from './mocks/db';
 
 export const generateUser = (overrides?: Partial<ReturnType<typeof db.user.create>>) => {

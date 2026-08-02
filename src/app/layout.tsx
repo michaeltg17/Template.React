@@ -1,8 +1,4 @@
-﻿import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query';
+﻿import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 import { ReactNode } from 'react';
 import { AppProvider } from '@/app/provider';
 import { getUserQueryOptions } from '@/lib/auth';
@@ -26,9 +22,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
     <html lang="en">
       <body>
         <AppProvider>
-          <HydrationBoundary state={dehydratedState}>
-            {children}
-          </HydrationBoundary>
+          <HydrationBoundary state={dehydratedState}>{children}</HydrationBoundary>
         </AppProvider>
       </body>
     </html>
@@ -38,5 +32,3 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
 export default RootLayout;
 
 export const dynamic = 'force-dynamic';
-
-

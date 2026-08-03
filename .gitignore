@@ -1,8 +1,9 @@
+.opencode
 .next
 node_modules
 tsconfig.tsbuildinfo
 .env
 *.local
 coverage
-.storybook
+
 dev.log

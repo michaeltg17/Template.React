@@ -4,5 +4,5 @@ tsconfig.tsbuildinfo
 .env
 *.local
 coverage
-.storybook
+
 dev.log

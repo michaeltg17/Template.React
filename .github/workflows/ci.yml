@@ -43,6 +43,8 @@ jobs:
         with:
           context: .
           push: false
+          build-args: |
+            NEXT_PUBLIC_API_URL=${{ vars.NEXT_PUBLIC_API_URL }}
           cache-from: type=gha,scope=template-production
           cache-to: type=gha,mode=max,scope=template-production
 
@@ -64,12 +66,25 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Verify production build environment
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL }}
+        run: |
+          if [ -z "${NEXT_PUBLIC_API_URL}" ]; then
+            echo "::error::Repo variable NEXT_PUBLIC_API_URL is not set. Refusing to publish an image that would bake in the localhost default."
+            exit 1
+          fi
+          echo "Publishing image with NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}"
+
       - name: Build and push Docker image
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v7
         with:
           context: .
           push: true
+          build-args: |
+            NEXT_PUBLIC_API_URL=${{ vars.NEXT_PUBLIC_API_URL }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha,scope=template-production

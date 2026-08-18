@@ -8,10 +8,21 @@ Built with the help of local AI using https://github.com/michaeltg17/best-model-
 
 ## Docker image
 
-On every push to `main`, CI builds and pushes three per-environment images to GHCR (`ghcr.io/michaeltg17/template-react`). `NEXT_PUBLIC_API_URL` is baked into the JS bundle at build time, so each environment gets its own tag, built with the API URL from the matching repo variable (`NEXT_PUBLIC_API_URL_DEV` / `NEXT_PUBLIC_API_URL_QA` / `NEXT_PUBLIC_API_URL_PROD`):
+On every push to `main`, CI builds and pushes a single image to GHCR (`ghcr.io/michaeltg17/template-react`):
 
-- `dev-<sha7>` — dev environment
-- `qa-<sha7>` — qa environment
-- `prod-<sha7>` — production environment
+- `<sha7>` — the commit's short SHA
+- `latest` — alias of the most recent release
 
-Deployment infra (k8s) only references the per-environment tag (e.g. `image.tag: dev-<sha7>` in `k8s/environments/dev/values.yaml`); it never builds the image itself.
+The image is environment-independent. `API_URL` is read by the server at request time, so the same image is promoted through every environment and configured per environment:
+
+```yaml
+# k8s/environments/<env>/values.yaml
+image:
+  tag: <sha7>
+env:
+  API_URL: https://api.<env>.example.com/api
+```
+
+Deployment infra (k8s) only references the tag and sets the `API_URL` env var; it never builds the image itself.
+
+The browser never sees the backend URL: all API calls go to the same-origin `/api/*`, which a server-side proxy (`src/app/api/[...slug]/route.ts`) forwards to `API_URL`. This is also why no `NEXT_PUBLIC_*` variable is needed — nothing client-facing is baked into the build.

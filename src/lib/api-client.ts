@@ -1,5 +1,15 @@
 import { useNotifications } from '@/components/ui/notifications';
-import { env } from '@/config/env';
+
+function getApiBase(): string {
+  if (typeof window === 'undefined') {
+    const url = process.env.API_URL;
+    if (!url) {
+      throw new Error('API_URL environment variable is required on the server');
+    }
+    return url;
+  }
+  return '/api';
+}
 
 type RequestOptions = {
   method?: string;
@@ -25,7 +35,7 @@ function buildUrlWithParams(
 async function fetchApi(url: string, options: RequestOptions = {}): Promise<any> {
   const { method = 'GET', headers = {}, body, cookie, params } = options;
 
-  const fullUrl = buildUrlWithParams(`${env.API_URL}${url}`, params);
+  const fullUrl = buildUrlWithParams(`${getApiBase()}${url}`, params);
 
   const response = await fetch(fullUrl, {
     method,

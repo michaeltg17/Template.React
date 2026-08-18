@@ -5,11 +5,10 @@ services:
       dockerfile: Dockerfile.ci
     container_name: mock-server
     ports:
-      - '8090:8080'
+      - '8090:8090'
     environment:
-      - NEXT_PUBLIC_URL=http://localhost:3000
-      - NEXT_PUBLIC_MOCK_API_PORT=8090
-      - NEXT_PUBLIC_ENABLE_API_MOCKING=true
+      - APP_URL=http://localhost:3000
+      - MOCK_API_PORT=8090
     volumes:
       - .:/app
       - /app/node_modules
@@ -23,10 +22,8 @@ services:
     ports:
       - '3000:3000'
     environment:
-      - NEXT_PUBLIC_URL=http://localhost:3000
-      - NEXT_PUBLIC_API_URL=http://localhost:8090/api
-      - NEXT_PUBLIC_ENABLE_API_MOCKING=true
-      - NEXT_PUBLIC_MOCK_API_PORT=8090
+      - APP_URL=http://localhost:3000
+      - API_URL=http://mock-server:8090/api
     volumes:
       - .:/app
       - /app/node_modules

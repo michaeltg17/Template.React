@@ -1,10 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
-export NEXT_PUBLIC_API_URL="${NEXT_PUBLIC_API_URL:-http://localhost:8090/api}"
-export NEXT_PUBLIC_ENABLE_API_MOCKING="${NEXT_PUBLIC_ENABLE_API_MOCKING:-true}"
-export NEXT_PUBLIC_URL="${NEXT_PUBLIC_URL:-http://localhost:3000}"
-export NEXT_PUBLIC_MOCK_API_PORT="${NEXT_PUBLIC_MOCK_API_PORT:-8090}"
+export API_URL="${API_URL:-http://localhost:8090/api}"
+export APP_URL="${APP_URL:-http://localhost:3000}"
+export MOCK_API_PORT="${MOCK_API_PORT:-8090}"
 
 echo ""
 echo "========================================="

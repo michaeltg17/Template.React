@@ -9,7 +9,7 @@ import { handlers } from '@/testing/mocks';
 dotenv.config();
 
 const app = express();
-app.use(cors({ origin: process.env.NEXT_PUBLIC_URL, credentials: true }));
+app.use(cors({ origin: process.env.APP_URL, credentials: true }));
 app.use(express.json());
 app.use(
   logger({
@@ -21,9 +21,7 @@ app.use(createMiddleware(...handlers));
 
 initializeDb().then(() => {
   console.log('Mock DB initialized');
-  app.listen(process.env.NEXT_PUBLIC_MOCK_API_PORT, () => {
-    console.log(
-      `Mock API server started at http://localhost:${process.env.NEXT_PUBLIC_MOCK_API_PORT}`,
-    );
+  app.listen(process.env.MOCK_API_PORT, () => {
+    console.log(`Mock API server started at http://localhost:${process.env.MOCK_API_PORT}`);
   });
 });
